@@ -6,7 +6,6 @@
 *******************************************************************************/
 #include <vector>
 #include <iostream>
-#include <iomanip>
 using namespace std;
 
 /*******************************************************************************
@@ -33,7 +32,9 @@ using namespace std;
 * 3 - What is the STL array container and how does it differ from the built-in
  * array and from a vector?
 *-------------------------------------------------------------------------------
-*
+* The STL array container give us different implementations of static arrays.
+ * it also provides us with member functions as well as non-member functions
+ * which gives us more efficiency and freedom when dealing with static arrays
 *******************************************************************************
 * 4 - How does the vector member function resize()differ from reserve()?
 *-------------------------------------------------------------------------------
@@ -43,11 +44,15 @@ using namespace std;
 *******************************************************************************
 * 5 -What should begin()and end()do for a container?
 *-------------------------------------------------------------------------------
-*
+* begin should move the pointer to the beginning of a container and end should
+ * move it to the end of the container
 *******************************************************************************
 * 6 - Give an example of using the vector push_back()modifier.
 *-------------------------------------------------------------------------------
-*
+* the push_back modifier can be used to change the size of a vector by inserting
+ * another value from the back. for example if we have a vector with the values
+ * (5, 10, 15) and we call push_back(20) the vector will change in size and print
+ * (5, 10, 15, 20) instead
 *-------------------------------------------------------------------------------*/
 
 /********************************************************************
