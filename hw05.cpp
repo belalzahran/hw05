@@ -12,7 +12,10 @@ using namespace std;
 /*******************************************************************************
 * hw05 - STL Vectors
 *-------------------------------------------------------------------------------
-* This program
+* This program asks the user for the total number of numbered spots on a
+ * lottery card. It then asks the user how many lucky numbers will be selected
+ * from the card. The program then randomizes the selection and displays the
+ * winners.
 *-------------------------------------------------------------------------------*
 
 ********************************************************************************
@@ -47,8 +50,32 @@ using namespace std;
 *
 *-------------------------------------------------------------------------------*/
 
-
+/********************************************************************
+ * Function Lotto:
+ * ------------------------------------------------------------------
+ * This method will select specific number of random numbers
+ * from the range passed through the function
+ * ------------------------------------------------------------------
+ * PRE-CONDITIONS
+ * rang and count of num
+ *
+ * POST-CONDITIONS
+ * vector containing random nums in range
+ ********************************************************************/
 vector<int> Lotto(int available, int selected);
+
+/********************************************************************
+ * Function PrintVector:
+ * ------------------------------------------------------------------
+ * This method will insert the vector passed through the function
+ * into the output stream and then to the console
+ * ------------------------------------------------------------------
+ * PRE-CONDITIONS
+ * existing initialized vector
+ *
+ * POST-CONDITIONS
+ * printed vector
+ ********************************************************************/
 void PrintVector(const vector<int>&);
 
 int main()
@@ -61,22 +88,35 @@ int main()
     cout << "   HW #5        : STL Vectors \n";
     cout << "*****************************************\n\n";
 
+    vector<int> winners; // OUT - vector containing winning numbers
+    int available;       // IN & CALC & OUT - num of spots
+    int numSelected;     // IN & CALC & OUT - num of selected spots
 
-    vector<int> winners;
-    int available = 51;
-    int numSelected = 11;
-
-    winners = Lotto(available, numSelected);
+    // for loop to run the code 3 times
+    for (int i = 0; i < 3; i++) {
 
 
-    cout << left;
-    cout << setw(19) << "Total Spots: " << available;
-    cout << endl;
-    cout << "Number of Winners: " << numSelected;
-    cout << right;
+        // prompt user for values
+        cout << "\n\nEnter the number of spots on the card: ";
+        cin >> available;
+        cout << "Enter the number of random winners: ";
+        cin >> numSelected;
 
-    cout << endl << endl;
-    PrintVector(winners);
+        // insert returned vector into winners
+        winners = Lotto(available, numSelected);
+
+
+        cout << "available: " << available;
+        cout << endl;
+        cout << "numSelected: " << numSelected;
+
+        cout << "\nwinners = Lotto(available, numSelected)...";
+
+        cout << endl << endl;
+
+        // print results
+        PrintVector(winners);
+    }
 
     return 0;
 }
@@ -86,6 +126,7 @@ int main()
 void PrintVector(const vector<int>& myVector)
 {
     cout << "Winners:";
+    // loop through vector and print
     for (unsigned int i = 0; i < myVector.size(); ++i)
         cout << " " << myVector.at(i);
 }
@@ -93,10 +134,13 @@ void PrintVector(const vector<int>& myVector)
 vector<int> Lotto(int available, int selected)
 {
     vector<int> myVector;
+    // for loop to insert all values into vectors
     for (unsigned int i = 1; i < available + 1; ++i)
         myVector.push_back(i);
 
+    // shuffle the vector from front to begin
     random_shuffle (myVector.begin(), myVector.end());
+    // shorten the vector to the specified size
     myVector.resize(selected);
 
     return myVector;
